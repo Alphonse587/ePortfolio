@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alphonse Maganga Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday-academic: a student's project portfolio read by faculty and reviewers
+   IDEA an oceanographic station log: each project is a "cast", logged with its question, method and readings
+   PICTURE a drawn water column, surface to 1,500 m, with the oxygen minimum zone and a sampling rosette
+   COLOUR white ground, deep sea #0a3d62 dominant, pale sky #dcEEF8 support, coral #e4572e accent; night #07141d
+   TYPE Schibsted Grotesk 800 display + Inter text
+   LAYOUT laptop: title band, then a full-width sea card (picture left, summary right); phone: title, picture, summary */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#07141d);
+--ink:light-dark(#0d1b24,#e6eef3);
+--ink2:light-dark(#475663,#9fb2bf);
+--rule:light-dark(#dfe5ea,#1d3140);
+--sea:light-dark(#0a3d62,#0f4a75);
+--sea-ink:#eaf4fb;
+--sky:light-dark(#dceef8,#0d2433);
+--coral:light-dark(#d9481f,#ff7a52);
+--panel:light-dark(#f4f8fb,#0b1d29)}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Schibsted Grotesk",Inter,sans-serif;line-height:1.08;letter-spacing:-.02em;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,5vw,52px);font-weight:800}
+h2{font-size:clamp(26px,3.2vw,34px);font-weight:800}
+h3{font-size:19px;font-weight:700;letter-spacing:-.01em}
+p{margin:0 0 14px;max-width:68ch}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(28px,4vw,60px);padding-inline:max(5vw,16px)}
+nav.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);padding:12px max(5vw,16px)}
+nav.top .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:flex-end}
+nav.top b{font-family:"Schibsted Grotesk",sans-serif;font-size:18px}
+nav.top .links{display:flex;flex-wrap:wrap;gap:4px 18px}
+nav.top .links a{text-decoration:none;color:var(--ink2);font-weight:500;padding:8px 0}
+nav.top .links a:hover,nav.top .links a:focus-visible{color:var(--ink);text-decoration:underline}
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:24px 56px;align-items:start}
+.kicker{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--coral);margin:0 0 12px}
+.role{font-family:"Schibsted Grotesk",Inter,sans-serif;font-size:clamp(19px,2.2vw,23px);font-weight:500;line-height:1.35;color:var(--ink2);margin:16px 0 0;max-width:24ch}
+.about-text h2{font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);margin-bottom:12px}
+.about-text p{font-size:17px}
+.about-text p:first-of-type{font-size:19px;color:var(--ink)}
+.focus{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:18px 0 0;padding:0}
+.focus li{font-size:14px;font-weight:500;background:var(--sky);color:var(--ink);border-radius:99px;padding:5px 12px}
+.projects-band{border-top:1px solid var(--rule)}
+.intro{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px 48px;align-items:end;padding-bottom:28px}
+.intro p{color:var(--ink2);font-size:17px;margin:0}
+.lede{font-size:17px;color:var(--ink2)}
+/* project card */
+.card{background:var(--sea);color:var(--sea-ink);border-radius:6px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);overflow:hidden}
+.card .fig{position:relative;min-height:440px}
+.card .fig svg{position:absolute;inset:0;width:100%;height:100%}
+.card .body{padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;gap:16px}
+.card .tag{font-size:14px;color:#a9cbe2}
+.card h2{color:#fff}
+.card p{color:#cfe3f1;margin:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5em,1fr));gap:14px;border-top:1px solid #2b5f84;padding-top:16px;margin-top:auto}
+.stats div{display:flex;flex-direction:column}
+.stats b{font-family:"Schibsted Grotesk",sans-serif;font-size:clamp(26px,3vw,32px);font-weight:800;color:#fff;white-space:nowrap;line-height:1.1}
+.stats span{font-size:13.5px;color:#a9cbe2}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:13px;border:1px solid #3f739a;border-radius:99px;padding:3px 10px;color:#dcecf7}
+.btn{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:4px;background:#fff;color:#0a3d62;font-weight:600;text-decoration:none}
+.btn:hover{background:#dceef8}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+/* case study */
+.cs-head{background:var(--sky)}
+.cs-head .wrap{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px 48px;align-items:start}
+.meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 16px;font-size:15px;margin:0}
+.meta dt{color:var(--ink2)}
+.meta dd{margin:0;font-weight:500}
+.toc{display:flex;gap:6px 18px;overflow-x:auto;padding:12px max(5vw,16px);border-bottom:1px solid var(--rule);font-size:15px;white-space:nowrap}
+.toc a{flex:none;color:var(--ink2);text-decoration:none;padding:6px 0}
+.toc a:hover{color:var(--ink);text-decoration:underline}
+section.cs{border-bottom:1px solid var(--rule)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:24px 48px;align-items:start}
+.two>div>h2{margin-bottom:14px}
+.q{font-family:"Schibsted Grotesk",sans-serif;font-size:clamp(20px,2.3vw,25px);font-weight:700;line-height:1.3;letter-spacing:-.01em;border-left:4px solid var(--coral);padding-left:18px;margin:0 0 18px;max-width:40ch}
+.note{font-size:14.5px;color:var(--ink2)}
+figure{margin:0;background:#fcfcfb;border:1px solid var(--rule);border-radius:6px;padding:10px}
+figcaption{font-size:14px;color:#475663;padding:8px 4px 0}
+.rows{display:grid;gap:12px}
+.row{display:grid;grid-template-columns:minmax(0,13em) minmax(0,1fr) 6.5em;gap:12px;align-items:center;font-size:15px}
+.row .bar{height:22px;background:var(--panel);border-radius:3px;overflow:hidden}
+.row .bar i{display:block;height:100%;background:var(--sea)}
+.row .bar i.muted{background:color-mix(in srgb,var(--ink2) 55%,transparent)}
+.row .bar i.hot{background:var(--coral)}
+.row .v{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600}
+.row small{display:block;color:var(--ink2);font-size:13px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{padding:9px 10px;border-bottom:1px solid var(--rule);text-align:left}
+th{font-weight:600;color:var(--ink2);font-size:14px}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.best td{font-weight:600;background:var(--panel)}
+.takeaways{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15em),1fr));gap:14px;margin-top:18px}
+.takeaways div{background:var(--panel);border-radius:6px;padding:18px}
+.takeaways h3{margin-bottom:6px}
+.takeaways p{margin:0;font-size:15px;color:var(--ink2)}
+ul.clean{margin:0;padding-left:1.1em}
+ul.clean li{margin-bottom:8px}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 40px}
+.cols h3{margin-bottom:10px}
+footer{background:var(--sea);color:var(--sea-ink)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;align-items:center}
+footer h2{color:#fff;font-size:clamp(22px,2.6vw,28px)}
+footer .links{display:flex;flex-direction:column;gap:4px}
+footer a{color:#fff}
+@media(max-width:900px){.card{grid-template-columns:minmax(0,1fr)}.card .fig{min-height:320px}.cols{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:760px){.about,.intro,.cs-head .wrap,.two{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.row{grid-template-columns:minmax(0,1fr) 5.5em}.row .bar{grid-column:1/-1;grid-row:2}table{font-size:13px}th,td{padding:7px 5px}.card .fig{min-height:340px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rosette{animation:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="wrap">
+  <div class="links"><a href="#about">About</a><a href="#projects">Projects</a><a href="#calcofi">CalCOFI case study</a><a href="#contact">Contact</a></div>
+</div></nav>
+
+<header class="band" id="about"><div class="wrap about">
+  <div>
+    <p class="kicker">ePortfolio · Data Analytics</p>
+    <h1>Alphonse Maganga</h1>
+  </div>
+  <div class="about-text">
+    <h2>About me</h2>
+    <p>I am an Information Technology, Cybersecurity, and Data Analytics professional with 17+ years of experience delivering secure, scalable, and mission-driven technology solutions across healthcare, public health, and enterprise environments.</p>
+    <p>With expertise in data analytics, cybersecurity, healthcare information systems, and data governance, I help organizations transform data into actionable insights, strengthen security, and drive operational excellence. My passion lies in leveraging data, technology, and cybersecurity to improve public health outcomes while ensuring the ethical, secure, and responsible use of sensitive information and emerging technologies, including Artificial Intelligence (AI).</p>
+    <ul class="focus" aria-label="Areas of expertise"><li>Data analytics</li><li>Cybersecurity</li><li>Healthcare information systems</li><li>Data governance</li><li>Responsible AI</li></ul>
+  </div>
+</div></header>
+
+<section class="band projects-band" id="projects"><div class="wrap intro">
+  <h2>Project portfolio</h2>
+  <p>Case studies from my data science coursework and healthcare information systems work. Each one shows the question, how I cleaned and modelled the data, what I found, and what I'd do next.</p>
+</div>
+
+<div class="wrap">
+  <article class="card" aria-labelledby="card-title">
+    <div class="fig" id="column" role="img" aria-label="Drawing of the ocean water column from the surface to 1,500 metres. Oxygen falls with depth to a minimum zone between 500 and 800 metres. A sampling rosette hangs at 250 metres."></div>
+    <div class="body">
+      <span class="tag">DS210 final project, Fall 2026 · Python, pandas, scikit-learn</span>
+      <h2 id="card-title">Predicting dissolved oxygen in the California Current</h2>
+      <p>Using 72 years of CalCOFI ocean samples, I built a model that estimates dissolved oxygen from depth, temperature, salinity, location and month, then tested it on years it had never seen.</p>
+      <div class="chips"><span>Data cleaning</span><span>Exploratory analysis</span><span>Regression</span><span>Random forest</span><span>Model validation</span></div>
+      <div class="stats">
+        <div><b>0.978</b><span>R² on 2010–2021 test years</span></div>
+        <div><b>0.22 mL/L</b><span>Mean absolute error</span></div>
+        <div><b>403,814</b><span>Clean samples, 1949–2021</span></div>
+      </div>
+      <a class="btn" href="#calcofi">Read the case study</a>
+    </div>
+  </article>
+</div>
+</section>
+
+<section id="calcofi" class="band cs-head"><div class="wrap">
+  <div>
+    <h2>Case study: an oxygen model that holds up in future years</h2>
+    <p class="lede" style="margin-top:14px">A random forest trained on 1949–2009 data predicts oxygen in 2010–2021 samples with R² = 0.98, cutting the error of a linear model by more than half.</p>
+  </div>
+  <dl class="meta">
+    <dt>School</dt><dd>Johnson County Community College</dd>
+    <dt>Course</dt><dd>DS210, final project, Fall 2026</dd>
+    <dt>Instructor</dt><dd>Alice Chen</dd>
+    <dt>Data</dt><dd><a href="https://calcofi.org/data/oceanographic-data/bottle-database/">CalCOFI Bottle Database</a>, 1949–2021</dd>
+    <dt>Size</dt><dd>895,371 samples, 662 cruises</dd>
+    <dt>Tools</dt><dd>Python, pandas, NumPy, scikit-learn, Matplotlib</dd>
+    <dt>My role</dt><dd>Sole analyst: question, cleaning, modelling, write-up</dd>
+  </dl>
+</div></section>
+
+<nav class="toc" aria-label="Case study sections"><a href="#question">Question</a><a href="#cleaning">Data cleaning</a><a href="#eda">What the data showed</a><a href="#models">Models</a><a href="#results">Results</a><a href="#limits">Limits and next steps</a><a href="#reflection">Reflection</a></nav>
+
+<section class="band cs" id="question"><div class="wrap two">
+  <div>
+    <h2>The question</h2>
+    <p class="note">It changed after exploring the data.</p>
+  </div>
+  <div>
+    <p class="q">Using depth, temperature, salinity, location and month, how accurately can we predict dissolved oxygen in years the model has never seen?</p>
+    <p>Low-oxygen water (hypoxia) stresses or kills fish and invertebrates. Oxygen is slower and more expensive to measure than temperature and salinity, which modern sensors record continuously. A reliable model could estimate oxygen wherever only temperature and salinity readings exist.</p>
+    <p>I started from a common question for this dataset, whether salinity predicts temperature. Salinity alone explained only 24% of the variation (R² = 0.24), and both are read by the same sensor anyway. Oxygen had strong but curved relationships with the other variables and is the hard one to measure, so I switched to predicting it. A shift in oxygen levels over time added a second test: does a model trained on the past keep working?</p>
+  </div>
+</div></section>
+
+<section class="band cs" id="cleaning"><div class="wrap two">
+  <div>
+    <h2>Data cleaning: 895,371 rows down to 403,814</h2>
+    <p>The <a href="https://calcofi.org/data/oceanographic-data/bottle-database/">CalCOFI Bottle Database</a> comes from the California Cooperative Oceanic Fisheries Investigations, which has sampled a fixed grid of stations off California several times a year since 1949. It arrives as two tables, casts and bottles, which I joined on the cast ID. I kept 45% of the original rows, and each cut has a reason.</p>
+    <ul class="clean">
+      <li><b>Interpolated rows removed.</b> 37% of rows were values interpolated from neighbouring bottles, not measurements. Keeping them would inflate accuracy.</li>
+      <li><b>No imputation of the target.</b> Filling in missing oxygen would mean grading the model on made-up answers. Nutrients and chlorophyll were 50–73% missing, so I dropped those columns.</li>
+      <li><b>Physical limits instead of a blind outlier rule.</b> The raw data held 99 °C water and −200 mL/L oxygen. A 1.5×IQR rule would also delete real warm surface and cold deep water, so I kept −2 to 35 °C, salinity 30–37.5 and oxygen 0–12 mL/L.</li>
+    </ul>
+  </div>
+  <div class="rows" aria-label="Rows remaining after each cleaning step">
+    <div class="row"><span>Starting rows</span><div class="bar"><i style="width:100%"></i></div><span class="v">895,371</span></div>
+    <div class="row"><span>Drop interpolated rows<small>−339,207</small></span><div class="bar"><i style="width:62.1%"></i></div><span class="v">556,164</span></div>
+    <div class="row"><span>Drop rows missing core variables<small>−149,259</small></span><div class="bar"><i style="width:45.4%"></i></div><span class="v">406,905</span></div>
+    <div class="row"><span>Drop quality-flagged values<small>−2,657</small></span><div class="bar"><i style="width:45.1%"></i></div><span class="v">404,248</span></div>
+    <div class="row"><span>Drop impossible values<small>−434</small></span><div class="bar"><i class="hot" style="width:45.1%"></i></div><span class="v">403,814</span></div>
+  </div>
+</div></section>
+
+<section class="band cs" id="eda"><div class="wrap">
+  <h2 style="margin-bottom:10px">What the data showed: oxygen bends with depth</h2>
+  <p class="lede">The relationships are strong but curved, which pointed me toward a non-linear model.</p>
+  <div class="two" style="margin-top:22px">
+    <figure><img src="img/oxygen-depth.png" alt="Scatter plots of temperature and oxygen against depth with median lines"><figcaption>Oxygen falls fast in the top 300 m, bottoms out at 500–800 m (the oxygen minimum zone) and rises again deeper down. A straight line can't bend back.</figcaption></figure>
+    <figure><img src="img/oxygen-trend.png" alt="Yearly mean oxygen at 200 to 300 metres from 1949 to 2021 with period means"><figcaption>At 200–300 m, oxygen rose to about 2.4 mL/L in the 1980s–90s and has been near 2.0 mL/L since 2000, down about 0.15 mL/L per decade since 1985.</figcaption></figure>
+  </div>
+  <div class="takeaways">
+    <div><h3>Salinity and temperature carry the signal</h3><p>Oxygen correlates with salinity (r = −0.82) and temperature (r = 0.79). Location and year correlate weakly (|r| ≤ 0.14).</p></div>
+    <div><h3>No steady decline since 1949</h3><p>The full-record trend is flat (+0.05 mL/L per decade), but levels since 2000 are lower than in the 1980s–90s.</p></div>
+    <div><h3>Sampling changed over time</h3><p>The 1970s have only four qualifying years, and the method moved from bottles to CTD sensors in 1993, so part of the pattern may come from how samples were taken.</p></div>
+  </div>
+</div></section>
+
+<section class="band cs" id="models"><div class="wrap two">
+  <div>
+    <h2>Models: split by year, not at random</h2>
+    <p>Samples from the same cast are metres apart and nearly identical. A random split puts near-copies in both training and test sets. I trained on 1949–2009 (348,838 rows) and tested on 2010–2021 (54,976 rows), which matches the real use: predicting future measurements.</p>
+    <p>I left out features that would leak the answer (oxygen saturation is calculated from oxygen), density (calculated from temperature and salinity) and year, so the model predicts from the water's physics rather than memorising the trend.</p>
+    <p class="note">Random forest: 80 trees, max depth 20, min 5 samples per leaf, trained on a 200,000-row subsample.</p>
+  </div>
+  <div>
+    <div class="scroll"><table>
+      <thead><tr><th>Model</th><th class="n">R²</th><th class="n">RMSE (mL/L)</th><th class="n">MAE (mL/L)</th></tr></thead>
+      <tbody>
+        <tr><td>Baseline (predict the mean)</td><td class="n">−0.009</td><td class="n">2.005</td><td class="n">1.803</td></tr>
+        <tr><td>Linear regression</td><td class="n">0.897</td><td class="n">0.640</td><td class="n">0.503</td></tr>
+        <tr class="best"><td>Random forest</td><td class="n">0.978</td><td class="n">0.299</td><td class="n">0.218</td></tr>
+      </tbody>
+    </table></div>
+    <h3 style="margin:26px 0 12px">What the random forest relied on</h3>
+    <div class="rows" aria-label="Random forest feature importance">
+      <div class="row"><span>Salinity</span><div class="bar"><i style="width:77%"></i></div><span class="v">0.77</span></div>
+      <div class="row"><span>Temperature</span><div class="bar"><i style="width:19%"></i></div><span class="v">0.19</span></div>
+      <div class="row"><span>Depth</span><div class="bar"><i class="muted" style="width:3%"></i></div><span class="v">0.03</span></div>
+      <div class="row"><span>Longitude</span><div class="bar"><i class="muted" style="width:1%"></i></div><span class="v">0.01</span></div>
+      <div class="row"><span>Latitude, month</span><div class="bar"><i class="muted" style="width:0.4%"></i></div><span class="v">0.00</span></div>
+    </div>
+    <p class="note" style="margin-top:12px">Depth scores low because temperature and salinity already encode it. Importances show what the model used, not what matters physically.</p>
+  </div>
+</div></section>
+
+<section class="band cs" id="results"><div class="wrap two">
+  <figure><img src="img/predicted-actual.png" alt="Predicted versus actual oxygen hexbin plot, and bar chart of mean absolute error by depth range for both models"><figcaption>Predictions sit tight on the diagonal. The linear model's errors peak at the surface, in the oxygen minimum zone and below 1,200 m, exactly where the curves bend. The random forest is more accurate at every depth.</figcaption></figure>
+  <div>
+    <h2 style="margin-bottom:14px">Results: the relationships held across 60 years</h2>
+    <p>On a random 80/20 split the same forest scored R² = 0.981, only slightly above the year-based 0.978. The model isn't just memorising nearby samples: what it learned from 1949–2009 still holds in 2010–2021.</p>
+    <p>Example: a summer sample from 250 m in the Southern California Bight at 8.5 °C and salinity 34.15 is predicted to hold 1.76 mL/L of oxygen, low enough to stress many fish.</p>
+    <ul class="clean">
+      <li>Salinity and temperature carry almost all the signal.</li>
+      <li>The relationships are non-linear, which is why the forest beats linear regression.</li>
+      <li>Mid-depth oxygen has been lower since 2000 than in the 1980s–90s.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="band cs" id="limits"><div class="wrap cols">
+  <div>
+    <h3>Limitations</h3>
+    <ul class="clean">
+      <li>Bottle-to-CTD change in 1993 may add measurement differences.</li>
+      <li>The 1970s have few oxygen measurements.</li>
+      <li>Applies only to the California Current's water masses.</li>
+      <li>A random forest can't predict beyond values seen in training, so it may miss future extremes.</li>
+    </ul>
+  </div>
+  <div>
+    <h3>Next steps</h3>
+    <ul class="clean">
+      <li>Add nitrate and phosphate for the post-1980 period.</li>
+      <li>Try gradient boosting, tuned with cross-validation grouped by cruise.</li>
+      <li>Add El Niño (ENSO) indices to explain year-to-year swings.</li>
+      <li>Use the model to fill the 1970s gap and study the long-term trend.</li>
+    </ul>
+  </div>
+  <div id="reflection">
+    <h3>Reflection</h3>
+    <p>The biggest lesson was that cleaning decisions shape the result as much as the model does. Dropping interpolated rows and splitting by year both made my scores harder to earn, but they made the scores honest. I also learned to let exploration change the question: the first idea was easy to answer and not very useful.</p>
+    <p>These habits carry into healthcare data, where records are also repeated, imputed or flagged, and where a model has to work on next year's patients, not last year's.</p>
+  </div>
+</div></section>
+
+
+<footer class="band" id="contact"><div class="wrap">
+  <h2>Get in touch</h2>
+  <div class="links">
+    <span>Email: <a href="mailto:alphonse.m.maganga@d-safeguard.com" style="overflow-wrap:anywhere">alphonse.m.maganga@d-safeguard.com</a></span>
+    <span>LinkedIn: <a href="https://www.linkedin.com/in/alphonse-maganga-a03909322" style="overflow-wrap:anywhere">linkedin.com/in/alphonse-maganga-a03909322</a></span>
+  </div>
+</div></footer>
+
+<script>
+{
+const box=document.getElementById('column');
+const svg='http://www.w3.org/2000/svg';
+const draw=()=>{
+  const W=box.clientWidth,H=box.clientHeight;
+  if(!W||!H)return;
+  const top=H*0.16,bot=H-28,left=W<420?44:56;
+  const y=d=>top+(bot-top)*d/1500;
+  const narrow=W<420;
+  const ticks=[0,250,500,750,1000,1250,1500].filter((t,i)=>!narrow||i%2===0);
+  // seeded bubbles near the surface
+  let s=7,bub='';
+  for(let i=0;i<34;i++){s=s*16807%2147483647;const bx=left+((s%1000)/1000)*(W-left-10);s=s*16807%2147483647;const by=top+8+((s%1000)/1000)*(y(260)-top);s=s*16807%2147483647;bub+=`<circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="${(1+(s%30)/12).toFixed(1)}" fill="#ffffff" opacity="${(0.12+(s%40)/160).toFixed(2)}"/>`}
+  const rx=left+(W-left)*0.62,ry=y(250);
+  const waves=Array.from({length:Math.ceil(W/40)+1},(_,i)=>`${i===0?'M':'Q'}${i===0?`0 ${top}`:`${i*40-20} ${top-6} ${i*40} ${top}`}`).join(' ');
+  box.innerHTML=`<svg xmlns="${svg}" viewBox="0 0 ${W} ${H}" aria-hidden="true">
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fb4dd"/><stop offset="0.25" stop-color="#1c6e9e"/><stop offset="1" stop-color="#041f33"/></linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a3d62"/><stop offset="1" stop-color="#2a6f98"/></linearGradient>
+    <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="#e4572e" opacity=".18"/><line x1="0" y1="0" x2="0" y2="7" stroke="#ff8a63" stroke-width="2" opacity=".55"/></pattern>
+  </defs>
+  <rect width="${W}" height="${top}" fill="url(#sky)"/>
+  <rect y="${top}" width="${W}" height="${H-top}" fill="url(#sea)"/>
+  <path d="${waves} L${W} 0 L0 0Z" fill="url(#sky)"/>
+  <path d="${waves}" fill="none" stroke="#bfe3f5" stroke-width="2" opacity=".8"/>
+  <rect x="${left}" y="${y(500)}" width="${W-left}" height="${y(800)-y(500)}" fill="url(#hatch)"/>
+  <line x1="${left}" x2="${W}" y1="${y(500)}" y2="${y(500)}" stroke="#ff8a63" stroke-dasharray="4 4"/>
+  <line x1="${left}" x2="${W}" y1="${y(800)}" y2="${y(800)}" stroke="#ff8a63" stroke-dasharray="4 4"/>
+  <text x="${left+12}" y="${(y(500)+y(800))/2-4}" fill="#ffd9cc" font-size="${narrow?13:14}" font-weight="600" font-family="Inter,sans-serif">Oxygen minimum zone</text>
+  <text x="${left+12}" y="${(y(500)+y(800))/2+15}" fill="#ffd9cc" font-size="13" font-family="Inter,sans-serif">500–800 m, under 0.5 mL/L</text>
+  ${bub}
+  ${ticks.map(t=>`<line x1="${left-6}" x2="${left}" y1="${y(t)}" y2="${y(t)}" stroke="#a9cbe2"/><text x="${left-10}" y="${y(t)+4}" text-anchor="end" fill="#cfe3f1" font-size="13" font-family="Inter,sans-serif">${t===0?'0 m':t}</text>`).join('')}
+  <line x1="${left}" x2="${left}" y1="${top}" y2="${bot}" stroke="#a9cbe2" opacity=".6"/>
+  <path d="M${rx-26} ${top-10} h52 l-8 10 h-36z" fill="#e9eef2"/><path d="M${rx-26} ${top-10} h52 l-2 3 h-48z" fill="#ffffff"/>
+  <line x1="${rx}" x2="${rx}" y1="${top}" y2="${ry-20}" stroke="#dbe9f2" stroke-width="1.5"/>
+  <g class="rosette" style="animation:bob 5s ease-in-out infinite;transform-origin:${rx}px ${ry}px">
+    <circle cx="${rx}" cy="${ry}" r="20" fill="none" stroke="#dbe9f2" stroke-width="2.5"/>
+    ${[-14,-7,0,7,14].map(dx=>`<rect x="${rx+dx-2.6}" y="${ry-13}" width="5.2" height="26" rx="2.4" fill="#f2f6f9"/><rect x="${rx+dx-2.6}" y="${ry-13}" width="2" height="26" rx="1" fill="#c9d6df"/>`).join('')}
+  </g>
+  <text x="${rx-30}" y="${ry-3}" text-anchor="end" fill="#ffffff" font-size="13" font-weight="600" font-family="Inter,sans-serif">Sample at 250 m, 8.5 °C</text>
+  <text x="${rx-30}" y="${ry+15}" text-anchor="end" fill="#cfe3f1" font-size="13" font-family="Inter,sans-serif">Predicted O₂: 1.76 mL/L</text>
+  <text x="${left+12}" y="${bot-12}" fill="#a9cbe2" font-size="13" font-family="Inter,sans-serif">Depth (m)</text>
+  </svg>`;
+};
+const ro=new ResizeObserver(draw);ro.observe(box);draw();
+const st=document.createElement('style');st.textContent='@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}';document.head.appendChild(st);
+}
+</script>
+</body>
+</html>
